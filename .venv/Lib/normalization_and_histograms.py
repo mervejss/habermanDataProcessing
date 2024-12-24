@@ -5,13 +5,15 @@ import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 
-def normalize_and_discretize(data):
+def normalize_and_discretize(data,output_csv_path="normalization_results.csv"):
     """
     Haberman veri kümesi üzerinde Min-Max ve Z-Score normalizasyon işlemlerini gerçekleştirir.
     Histogramlarda ortalama, medyan ve yoğunluk eğrisi gibi ayrıntılı görselleştirme özellikleri sunar.
 
     Args:
         data (pd.DataFrame): Normalizasyon işlemleri için kullanılan veri kümesi.
+        output_csv_path (str): Normalizasyon sonuçlarının kaydedileceği CSV dosyasının yolu.
+
     """
     # Sürekli nitelikler
     # Veri kümesindeki sayısal (sürekli) sütunların bir listesi oluşturulur.
@@ -46,6 +48,12 @@ def normalize_and_discretize(data):
 
     print("\nZ-Score Normalizasyonu Sonuçları:")
     print(zscore_normalized.head())
+
+    # Normalizasyon sonuçlarını birleştirme
+    normalized_data = pd.concat([data[numeric_columns], minmax_normalized, zscore_normalized], axis=1)
+
+    normalized_data.to_csv(output_csv_path, index=False)
+    print(f"Normalizasyon sonuçları '{output_csv_path}' dosyasına kaydedildi.")
 
     # Histogramları Çizme
     # Her bir sürekli değişken için Min-Max ve Z-Score normalizasyonlarının histogramları çizilir.

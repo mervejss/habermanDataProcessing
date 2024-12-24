@@ -78,7 +78,7 @@ gerçekleştiriniz.
 from statistics_and_visuals import analyze_and_visualize
 
 # analyze_and_visualize fonksiyonunu çağırarak veriyi analiz ediyoruz
-#analyze_and_visualize(data)
+analyze_and_visualize(data)
 
 
 print("---------------------------------------------")
@@ -97,7 +97,7 @@ a) Veri kümesinin e-postada belirtilen her bir niteliği için ayrı ayrı
 from normalization_and_histograms import normalize_and_discretize
 
 # normalize_and_discretize fonksiyonunu çağırarak veri normalizasyonu yapıp histogram çizdiriyoruz.
-#normalize_and_discretize(data)
+normalize_and_discretize(data)
 
 
 print("---------------------------------------------")
@@ -116,7 +116,7 @@ ihmal ediniz. Sadece sürekli değerli nitelikler için gerçekleştirilecektir.
 # discretization_and_histograms modülünden discretize_and_plot fonksiyonunu çağırıyoruz
 from discretization_and_histograms import discretize_and_plot
 # discretize_and_plot fonksiyonunu çağırarak Ayrıklaştırma ve histogram çizim işlemlerini yapıyoruz.
-#discretize_and_plot(data, n_bins=5)
+discretize_and_plot(data, n_bins=5)
 
 
 
@@ -142,7 +142,7 @@ gain) hesaplayınız.
 # discretization_and_histograms modülünden discretize_and_plot fonksiyonunu çağırıyoruz
 from equal_width_discretization_3bins  import discretize_and_calculate_info_gain
 # discretize_and_calculate_info_gain fonksiyonunu çağırarak Ayrıklaştırma ve histogram çizim işlemlerini yapıyoruz.
-#discretize_and_calculate_info_gain(data)
+discretize_and_calculate_info_gain(data)
 
 print("---------------------------------------------")
 print("---------------------------------------------")
@@ -157,4 +157,4 @@ gain) hesaplayınız.
 # discretization_and_histograms modülünden discretize_and_plot fonksiyonunu çağırıyoruz
 from equal_width_discretization_4bins  import discretize_and_calculate_info_gain
 # discretize_and_calculate_info_gain fonksiyonunu çağırarak Ayrıklaştırma ve histogram çizim işlemlerini yapıyoruz.
-#discretize_and_calculate_info_gain(data)
+discretize_and_calculate_info_gain(data)

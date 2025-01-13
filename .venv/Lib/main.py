@@ -1,18 +1,21 @@
 import pandas as pd
-#from information_gain import process_data
+import sys
+sys.path.append(r'A:\PycharmProjects\habermanDataSetClassification\.venv\Lib\dataPreprocessing')
+sys.path.append(r'A:\PycharmProjects\habermanDataSetClassification\.venv\Lib\classificationAlgorithms')
 
 """
 248229001001
 Merve Başak DEMİRTAŞ
 Bilgisayar Mühendisliği A.B.D. / Bilgisayar Mühendisliği Yüksek Lisans / 1. Sınıf
-Haberman Veri Seti / Veri Ön İşleme Teknikleri Dersi Uygulaması
+Haberman Veri Seti / Makine Öğrenmesi Dersi Final Projesi - Sınıflandırma Algoritmalarının Uygulanması
 
 3 tane fiel var benim veri setimde. 3 fieldi da AYRIK OLMAYAN (SÜREKLİ, CONTINUOUS) olarak kabul ettim 
 ve ödevin gerekli aşamalarında her birini equalwith yöntemi ile n eşit parçaya bölerek sürekli hale getirdim sonrasında işlemleri gerçekleştirdim.
 """
+# ÖNCELİKLE VERİMİ HAZIRLIYORUM VE VERİME TÜM ÖN İŞLEME UYGULAMALARINI GERÇEKLEŞTİRİYORUM. SONRASINDA SINIFLANDIRMA AŞAMASINA GEÇECEĞİM.
 
 ### 1. BÖLÜM: Veri Setinin Yüklenmesi ve Genel İnceleme
-
+# A) VERİ HAZIRLIĞI VE VERİ ÖN İŞLEME TEKNİKLERİNİN UYGULANMASI.
 # Veri setinin yolunu belirtiyoruz
 file_path = r"haberman.dat"
 
@@ -34,6 +37,9 @@ print("---------------------------------------------")
 # data.isnull().sum() fonksiyonu, her sütundaki eksik değerlerin sayısını verir. Eğer bir sütunda eksik veri varsa, bu değeri doldurmak veya o satırı çıkarmak gerekebilir.
 print("Eksik Veri Kontrolü")
 print(data.isnull().sum())  # Her sütundaki eksik veri sayısını gösterir
+# Eğer eksik veriler varsa, bu verileri çıkarmak veya uygun bir şekilde doldurmak gerekir
+data = data.dropna()  # NaN içeren satırları kaldırma
+
 print("---------------------------------------------")
 
 # Hatalı formatları kontrol etme
@@ -59,7 +65,132 @@ print(data['Survival'].value_counts())  # 'Survival' sütunundaki kategorik değ
 print("---------------------------------------------")
 
 
+from preprocess_data import preprocess_data
+# Veri ön işleme
+data = preprocess_data(data)
+
+print("↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭")
+print("↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭↭")
+
+# B) SINIFLANDIRMA ALGORİTMALARI
+#VERİ SETİ DENGELENECEK ÖNCE !
+
+from classificationAlgorithms.logistic_regression import logistic_regression
+logistic_regression(data)
+
 print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.naive_bayes_classification import naive_bayes_classification
+naive_bayes_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.decision_tree_classification import decision_tree_classification
+decision_tree_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.id3_classification import id3_classification
+id3_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.c45_classification import c45_classification
+c45_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.cart_classification import cart_classification
+cart_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.gini_classification import gini_classification
+gini_classification(data)
+
+
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.knn_classification import knn_classification
+knn_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.nearest_centroid_classification import nearest_centroid_classification
+nearest_centroid_classification(data)
+
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.mlp_classification import mlp_classification
+mlp_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.svm_classification import svm_classification
+svm_classification(data)
+
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.sgd_classification import sgd_classification
+sgd_classification(data)
+
+
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.gradient_boosting_classification import gradient_boosting_classification
+gradient_boosting_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.random_forest_classification import random_forest_classification
+random_forest_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.bagging_classification import bagging_classification
+bagging_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.voting_classification import voting_classification
+voting_classification(data)
+
+print("---------------------------------------------")
+print("---------------------------------------------")
+
+from classificationAlgorithms.stacking_classification import stacking_classification
+stacking_classification(data)
+
+
+
+
+
+
+
+
+
+
+
+#print("---------------------------------------------")
 
 ### 2. BÖLÜM: İstatistiksel analiz ve görselleştirme
 """
@@ -78,11 +209,11 @@ gerçekleştiriniz.
 from statistics_and_visuals import analyze_and_visualize
 
 # analyze_and_visualize fonksiyonunu çağırarak veriyi analiz ediyoruz
-analyze_and_visualize(data)
+#analyze_and_visualize(data)
 
 
-print("---------------------------------------------")
-print("---------------------------------------------")
+#print("---------------------------------------------")
+#print("---------------------------------------------")
 
 ### 3. BÖLÜM A) : Normalizasyon ve Histogramlar
 """
@@ -97,11 +228,11 @@ a) Veri kümesinin e-postada belirtilen her bir niteliği için ayrı ayrı
 from normalization_and_histograms import normalize_and_discretize
 
 # normalize_and_discretize fonksiyonunu çağırarak veri normalizasyonu yapıp histogram çizdiriyoruz.
-normalize_and_discretize(data)
+#normalize_and_discretize(data)
 
 
-print("---------------------------------------------")
-print("---------------------------------------------")
+#print("---------------------------------------------")
+#print("---------------------------------------------")
 
 ### 3. BÖLÜM B) : Ayrıklaştırma ve Histogramlar
 """
@@ -116,13 +247,13 @@ ihmal ediniz. Sadece sürekli değerli nitelikler için gerçekleştirilecektir.
 # discretization_and_histograms modülünden discretize_and_plot fonksiyonunu çağırıyoruz
 from discretization_and_histograms import discretize_and_plot
 # discretize_and_plot fonksiyonunu çağırarak Ayrıklaştırma ve histogram çizim işlemlerini yapıyoruz.
-discretize_and_plot(data, n_bins=5)
+#discretize_and_plot(data, n_bins=5)
 
 
 
 
-print("---------------------------------------------")
-print("---------------------------------------------")
+#print("---------------------------------------------")
+#print("---------------------------------------------")
 ### 4. BÖLÜM : Ayrıklaştırma ve Information Gain Hesaplama
 """
 3. X veri kümesi için e-postada belirtilen her bir niteliğin bilgi kazancı (information gain)
@@ -142,10 +273,10 @@ gain) hesaplayınız.
 # discretization_and_histograms modülünden discretize_and_plot fonksiyonunu çağırıyoruz
 from equal_width_discretization_3bins  import discretize_and_calculate_info_gain
 # discretize_and_calculate_info_gain fonksiyonunu çağırarak Ayrıklaştırma ve histogram çizim işlemlerini yapıyoruz.
-discretize_and_calculate_info_gain(data)
+#discretize_and_calculate_info_gain(data)
 
-print("---------------------------------------------")
-print("---------------------------------------------")
+#print("---------------------------------------------")
+#print("---------------------------------------------")
 
 ### 4. BÖLÜM B) : Equal-Width=4  Ayrıklaştırma ve Information Gain Hesaplama
 """
@@ -157,4 +288,9 @@ gain) hesaplayınız.
 # discretization_and_histograms modülünden discretize_and_plot fonksiyonunu çağırıyoruz
 from equal_width_discretization_4bins  import discretize_and_calculate_info_gain
 # discretize_and_calculate_info_gain fonksiyonunu çağırarak Ayrıklaştırma ve histogram çizim işlemlerini yapıyoruz.
-discretize_and_calculate_info_gain(data)
+#discretize_and_calculate_info_gain(data)
+
+
+
+
+
